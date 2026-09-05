@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>jakarta.servlet.jsp</groupId>
 			<artifactId>jakarta.servlet.jsp-api</artifactId>
-			<version>4.0.0</version>
+			<version>3.1.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<!-- Source:

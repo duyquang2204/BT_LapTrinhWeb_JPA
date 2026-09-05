@@ -8,11 +8,12 @@
 <persistence-unit name="jpa-hibernate-mysql">
 	<class>vn.iotstar.entity.Category</class>
 	<class>vn.iotstar.entity.Video</class>
+	<class>vn.iotstar.entity.UserModel</class>
 	<properties>
 		<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 		<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpast3" />
 		<property name="jakarta.persistence.jdbc.user" value="root" />
-		<property name="jakarta.persistence.jdbc.password" value="123456" />
+		<property name="jakarta.persistence.jdbc.password" value="CHANGE_ME" />
 		<property name="jakarta.persistence.schema-generation.database.action" value="create" />
 		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 		<property name="hibernate.hbm2ddl.auto" value="update" />
