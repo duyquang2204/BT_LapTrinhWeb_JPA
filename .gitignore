@@ -1,0 +1,8 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.sts4-cache/
+.settings/
+.classpath
+.project
+.ds_store
+*.log
