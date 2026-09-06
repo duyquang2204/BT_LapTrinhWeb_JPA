@@ -194,7 +194,17 @@ public class CategoryDao implements ICategoryDao {
                 throw new IllegalStateException(
                         "Danh mục đang có video, không thể xóa.");
             }
+            Long productCount = em.createQuery(
+                    "SELECT COUNT(p) FROM Product p "
+                            + "WHERE p.category.categoryid = :categoryid",
+                    Long.class)
+                    .setParameter("categoryid", cateid)
+                    .getSingleResult();
 
+            if (productCount > 0) {
+                throw new IllegalStateException(
+                        "Danh mục đang có sản phẩm, không thể xóa.");
+            }
             em.remove(category);
             transaction.commit();
         } catch (RuntimeException e) {

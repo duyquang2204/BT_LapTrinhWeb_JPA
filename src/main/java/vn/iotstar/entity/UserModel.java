@@ -47,7 +47,10 @@ public class UserModel implements Serializable {
     
     @Column(name = "active")
     private int active;
-
+    
+    @Column(name = "session_version", nullable = false)
+    private int sessionVersion;
+    
     public UserModel() {
     }
 
@@ -153,7 +156,14 @@ public class UserModel implements Serializable {
     public void setActive(int active) {
         this.active = active;
     }
+    
+    public int getSessionVersion() {
+        return sessionVersion;
+    }
 
+    public void setSessionVersion(int sessionVersion) {
+        this.sessionVersion = sessionVersion;
+    }
     @Override
     public String toString() {
         return "UserModel{id=" + id

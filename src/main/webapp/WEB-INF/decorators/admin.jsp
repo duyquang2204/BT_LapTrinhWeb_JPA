@@ -35,6 +35,11 @@
                     </a>
                 </li>
                 <li>
+    				<a href="${pageContext.request.contextPath}/admin/products">
+        				Sản phẩm
+    				</a>
+				</li>
+                <li>
                     <a href="<c:url value='/user/home'/>">
                         Trang chủ
                     </a>
@@ -60,22 +65,75 @@
     <script src="<c:url value='/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 
     <script>
-        function chooseFile(fileInput) {
-            const preview = document.getElementById("imagess");
-            const file = fileInput.files && fileInput.files[0];
+    function chooseFile(fileInput) {
+        const preview = document.getElementById("imagess");
 
-            if (!preview || !file) {
+        if (!preview) {
+            return;
+        }
+
+        // Ghi nhớ ảnh gốc để khôi phục khi bỏ lựa chọn file.
+        if (!preview.hasAttribute("data-original-src")) {
+            preview.dataset.originalSrc =
+                preview.getAttribute("src") || "";
+        }
+
+        const file = fileInput.files && fileInput.files[0];
+
+        // Mỗi lần thay đổi lựa chọn có một mã riêng,
+        // tránh lần đọc cũ ghi đè lần chọn mới.
+        const selectionId =
+                String(Number(preview.dataset.selectionId || "0") + 1);
+
+        preview.dataset.selectionId = selectionId;
+
+        function restoreOriginal() {
+            const original = preview.dataset.originalSrc;
+
+            if (original) {
+                preview.src = original;
+                preview.style.display = "inline-block";
+            } else {
+                preview.removeAttribute("src");
+                preview.style.display = "none";
+            }
+        }
+
+        if (!file) {
+            restoreOriginal();
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("Ảnh không được vượt quá 5 MB.");
+            fileInput.value = "";
+            restoreOriginal();
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            if (preview.dataset.selectionId !== selectionId) {
                 return;
             }
 
-            const reader = new FileReader();
+            preview.src = event.target.result;
+            preview.style.display = "inline-block";
+        };
 
-            reader.onload = function (event) {
-                preview.src = event.target.result;
-            };
+        reader.onerror = function () {
+            if (preview.dataset.selectionId !== selectionId) {
+                return;
+            }
 
-            reader.readAsDataURL(file);
-        }
-    </script>
+            fileInput.value = "";
+            restoreOriginal();
+            alert("Không thể đọc file đã chọn.");
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
 </body>
 </html>

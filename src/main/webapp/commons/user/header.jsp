@@ -31,6 +31,7 @@
 			<!-- BEGIN TOP BAR MENU -->
 			<div class="col-md-6 col-sm-6 additional-nav">
 				<ul class="list-unstyled list-inline pull-right">
+					<li><a href="${pageContext.request.contextPath}/product">Sản phẩm</a></li>
 					<li><a href="shop-account.html">My Account</a></li>
 					<li><a href="shop-wishlist.html">My Wishlist</a></li>
 					<li><a href="shop-checkout.html">Checkout</a></li>
@@ -55,7 +56,7 @@
 <!-- BEGIN HEADER -->
 <div class="header">
 	<div class="container">
-		<a class="site-logo" href="shop-index.html"><img
+		<a class="site-logo" href="${pageContext.request.contextPath}/user/home"><img
 			src="${URL}assets/frontend/layout/img/logos/logo-shop-red.png"
 			alt="Metronic Shop UI"></a> <a href="javascript:void(0);"
 			class="mobi-toggler"><i class="fa fa-bars"></i></a>

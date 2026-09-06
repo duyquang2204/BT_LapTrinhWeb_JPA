@@ -27,6 +27,9 @@ public class Category implements Serializable{
 	//bi-directional many-to-one association to Video
 	@OneToMany(mappedBy="category")
 	private List<Video> videos;
+	
+	@OneToMany(mappedBy = "category")
+	private List<Product> products = new java.util.ArrayList<>();
 
 	public Category() {
 	
@@ -84,6 +87,13 @@ public class Category implements Serializable{
 		video.setCategory(null);
 
 		return video;
+	}
+	public List<Product> getProducts() {
+	    return products;
+	}
+
+	public void setProducts(List<Product> products) {
+	    this.products = products;
 	}
 	
 }

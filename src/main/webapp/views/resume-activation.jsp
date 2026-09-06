@@ -6,7 +6,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập</title>
+    <title>Tiếp tục kích hoạt tài khoản</title>
 </head>
 <body>
 
@@ -14,33 +14,27 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
-            <h2>Đăng nhập</h2>
-            <c:if test="${not empty notice}">
-    		<div class="alert alert-warning">
-        	<c:out value="${notice}"/></div>
-			</c:if>
-			<c:if test="${not empty success}">
-    		<div class="alert alert-success">
-        	<c:out value="${success}"/>
-    		</div>
-			</c:if>
+            <h2>Tiếp tục kích hoạt tài khoản</h2>
 
-			<p><a href="${pageContext.request.contextPath}/register">Chưa có tài khoản? Đăng ký</a></p>
-			
-            <c:if test="${not empty alert}">
-                <div class="alert alert-danger" role="alert">
-                    <c:out value="${alert}"/>
+            <p>
+                Nếu đã đăng ký nhưng chưa xác nhận email,
+                hãy nhập thông tin tài khoản để tiếp tục.
+            </p>
+
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">
+                    <c:out value="${error}"/>
                 </div>
             </c:if>
 
+            <c:url value="/activate/resume" var="resumeUrl"/>
             <c:url value="/login" var="loginUrl"/>
-            <c:url value="/user/home" var="homeUrl"/>
 
-            <form action="${loginUrl}" method="post">
+            <form action="${resumeUrl}" method="post">
 
                 <input type="hidden"
-                       name="loginToken"
-                       value="<c:out value='${sessionScope.loginToken}'/>">
+                       name="csrfToken"
+                       value="<c:out value='${sessionScope.csrfToken}'/>">
 
                 <div class="form-group">
                     <label for="username">Tên đăng nhập</label>
@@ -50,32 +44,30 @@
                            name="username"
                            class="form-control"
                            required
+                           maxlength="30"
                            autocomplete="username"
                            value="<c:out value='${username}'/>">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Mật khẩu</label>
+                    <label for="password">Mật khẩu đã đăng ký</label>
 
                     <input type="password"
                            id="password"
                            name="password"
                            class="form-control"
                            required
+                           maxlength="128"
                            autocomplete="current-password">
-                           
                 </div>
-                <p><a href="${pageContext.request.contextPath}/forgetpassword">Quên mật khẩu?</a></p>
-				<p><a href="${pageContext.request.contextPath}/activate/resume">Đã đăng ký nhưng chưa kích hoạt tài khoản?</a></p>
-				
+
                 <button type="submit" class="btn btn-primary">
-                    Đăng nhập
+                    Tiếp tục
                 </button>
 
-                <a href="${homeUrl}" class="btn btn-default">
-                    Về trang chủ
+                <a href="${loginUrl}" class="btn btn-default">
+                    Về đăng nhập
                 </a>
-
             </form>
 
         </div>

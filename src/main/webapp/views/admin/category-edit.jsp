@@ -88,7 +88,7 @@
                      alt="Ảnh xem trước"
                      width="160"
                      height="120"
-                     style="object-fit: contain;">
+                     style="display: none; style="object-fit: contain;">
             </c:otherwise>
         </c:choose>
 

@@ -40,7 +40,10 @@ public class LoginController extends HttpServlet {
         }
 
         ensureLoginToken(session);
-
+        req.setAttribute("notice", session.getAttribute("authNotice"));
+        session.removeAttribute("authNotice");
+        req.setAttribute("success", session.getAttribute("authSuccess"));
+        session.removeAttribute("authSuccess");
         req.getRequestDispatcher("/views/login.jsp")
                 .forward(req, resp);
     }
@@ -119,6 +122,9 @@ public class LoginController extends HttpServlet {
         HttpSession newSession = req.getSession(true);
         newSession.setMaxInactiveInterval(30 * 60);
         newSession.setAttribute("account", user);
+        newSession.setAttribute(
+                "sessionVersion",
+                user.getSessionVersion());
 
         // Token dùng cho các form Category/Profile.
         newSession.setAttribute(
