@@ -33,7 +33,7 @@ public class UserModel implements Serializable {
     @Column(name = "fullname")
     private String fullname;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 100)
     private String email;
 
     @Column(name = "phone")

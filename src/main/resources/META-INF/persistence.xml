@@ -16,9 +16,10 @@
 		<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpast3" />
 		<property name="jakarta.persistence.jdbc.user" value="root" />
 		<property name="jakarta.persistence.jdbc.password" value="123456" />
-		<property name="jakarta.persistence.schema-generation.database.action" value="create" />
+		<property name="jakarta.persistence.schema-generation.database.action"
+          value="none" />
 		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-		<property name="hibernate.hbm2ddl.auto" value="update" />
+	
 		<property name="hibernate.show_sql" value="true" />
 		<property name="hibernate.format_sql" value="true" />
 
